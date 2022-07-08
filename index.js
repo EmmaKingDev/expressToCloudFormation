@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/assesment', (req, res) => {
-    res.send({ message: 'Can this actually work? Ihmettelen vaan. T. Emma' })
+    res.send({ message: 'Hi there!' })
 })
 
 app.listen(port, () => {
