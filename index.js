@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 //text based JSON to JS-accesible variables in req.body
 app.use(bodyParser.json())
