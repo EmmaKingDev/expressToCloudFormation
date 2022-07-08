@@ -29,24 +29,22 @@ Resources:
       SecurityGroups:
         - !Ref EmmaEC2SecurityGroup
       UserData:
-        Fn::Base64:
-          Fn::Join:
-            - "\n"
-            - - "#!/bin/bash"
-              - "sudo su"
-              - "cd ~"
-              - "yum update -y"
-              - "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
-              - "export NVM_DIR=\"$HOME/.nvm"
-              - "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\""
-              - "[ -s \"$NVM_DIR/bash_completion\" ] && \. \"$NVM_DIR/bash_completion\""
-              - ". ~/.nvm/nvm.sh"
-              - "nvm install --lts"
-              - "yum install git -y"
-              - "git clone https://github.com/EmmaKingDev/expressToCloudFormation.git app"
-              - "cd app && npm install"
-              - "sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000"
-              - "npm start"
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          sudo su
+          cd ~
+          yum update -y
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+          export NVM_DIR=\"$HOME/.nvm
+          [ -s \"$NVM_DIR/nvm.sh\" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s \"$NVM_DIR/bash_completion\" ] && \. "$NVM_DIR/bash_completion\"
+          . ~/.nvm/nvm.sh
+          nvm install --lts
+          yum install git -y
+          git clone https://github.com/EmmaKingDev/expressToCloudFormation.git app
+          cd app && npm install
+          sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
+          npm start
       Tags:
         - Key: Owner
           Value: !Ref MyName
