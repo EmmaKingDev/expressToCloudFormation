@@ -9,6 +9,10 @@ app.use(bodyParser.json())
 //req.body will be an object that contains values of any type
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.get('/', (req, res) => {
+    res.send({ message: 'Hi!' })
+})
+
 app.get('/assesment', (req, res) => {
     res.send({ message: 'Can this actually work? Ihmettelen vaan. T. Emma' })
 })
